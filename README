@@ -1,0 +1,23 @@
+Dieses Scriptset ermöglicht den Test einer AMQ Installation
+
+0) Installation
+	Es werden alle benötigten Perl-Module mitgeliefert, es ist nichts zu installieren, außer Perl.
+
+1) Konfiguration
+	In etc/config_amq.pm werden die Zugangsdaten zur AMQ Instanz konfiguriert.
+	In der activemq.xml des AMQ Brokers wird ein Stomp TransportConnector benötigt:
+
+	<transportConnectors>
+		...
+		<transportConnector name="stomp" uri="stomp://0.0.0.0:61617"/>
+		...
+	</transportConnectors>
+
+
+2) In Queue schreiben
+	Das Script producer.pl schreibt Nachrichten, per Default 10 Persistente, sowie 10 nicht-Persistente in eine Queue.
+
+3) Queue auslesen
+	Das Script consumer.pl liest alle Nachrichten der Queue aus. Das Script kann mit Strg+c abgebrochen werden, andernfalls
+	hält es die Subscription an der Queue und gibt Nachrichten aus, sobald welche in die Queue kamen.
+
